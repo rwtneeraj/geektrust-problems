@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>shopping cart</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .header-section {
+        height: 80px;
+        display: flex;
+        background-color: rgba(51, 49, 49, 0.119);
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+
+      nav a {
+        color: black;
+        text-decoration: none;
+        border-bottom: 2px solid black;
+      }
+
+      .search-Bar {
+        margin: auto;
+        width: 400px;
+        height: 40px;
+        margin-top: 40px;
+      }
+
+      .search-Bar p {
+        float: left;
+        width: 300px;
+        font-size: 18px;
+        color: rgba(60, 57, 57, 0.5);
+        border-bottom: 1px solid grey;
+        margin-right: 20px;
+        padding-bottom: 10px;
+      }
+      button {
+        height: 35px;
+        width: 70px;
+      }
+
+      .hero-section {
+        border: 2px solid green;
+        height: 800px;
+        margin: 30px;
+        
+      }
+
+      .filer-section {
+        border: 2px solid red;
+        height: 80%;
+        margin: 50px;
+        width: 300px;
+        padding-left: 20px;
+        display: inline-block;
+        box-shadow: 3px 6px 10px rgb(187, 185, 185);
+      }
+      .filer-section h3 {
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+
+      .color-component {
+        border: 2px solid blue;
+        margin-bottom: 10px;
+        width: 200px;
+      }
+
+      .color-component .checkbox {
+        float: left;
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+        background-color: grey;
+      }
+
+      .card-section{
+        border: 2px solid red;
+        width: 70%;
+        height: 80%;
+        margin: 50px;
+        float: right;
+      }
+      .card-section .cards{
+        border: 2px solid blue;
+        margin: 30px;
+        width:100%;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header-section">
+      <h2 style="float: left">TeeRex Store</h2>
+
+      <nav style="float: right">
+        <a href="">Products</a>
+        <img src="" alt="" />
+      </nav>
+    </header>
+
+    <!-- search bar section -->
+    <div class="search-Bar">
+      <p>search for products...</p>
+      <button>search</button>
+    </div>
+
+    <!-- main hero section -->
+
+    <section class="hero-section">
+      <aside class="filer-section">
+        <h3>Color</h3>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>Red</p>
+        </div>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>blue</p>
+        </div>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>gree</p>
+        </div>
+
+        <h3>Gender</h3>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>Men</p>
+        </div>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>Women</p>
+        </div>
+
+        <h3>Price</h3>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>0 - Rs 250</p>
+        </div>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>Rs250 - 450</p>
+        </div>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>Rs 450</p>
+        </div>
+        <h3>Type</h3>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>Red</p>
+        </div>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>blue</p>
+        </div>
+        <div class="color-component">
+          <div class="checkbox"></div>
+          <p>gree</p>
+        </div>
+      </aside>
+      
+       <div class="card-section">
+         <div class="cards">
+          <div class="card">
+            
+          </div>
+         </div>
+       </div>
+
+    </section>
+  </body>
+</html>
