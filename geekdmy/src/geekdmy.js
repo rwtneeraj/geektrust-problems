@@ -1,7 +1,17 @@
-const {addMemberShipDiscount,doApplyProMemberShip} = require('./MemberShipSegment');
-const {getCoupon,addCouponDiscount} = require('./couponSegment');
-const {printBill} = require('./printBill');
-const {prompt, DEGREE_COST,DIPLOMA_COST,CERTIFICATION_COST,confirm,programmePrices} = require('./utilites');
+const {
+  addMemberShipDiscount,
+  doApplyProMemberShip,
+} = require("./MemberShipSegment");
+const { getCoupon, addCouponDiscount } = require("./couponSegment");
+const { printBill } = require("./printBill");
+const {
+  prompt,
+  DEGREE_COST,
+  DIPLOMA_COST,
+  CERTIFICATION_COST,
+  confirm,
+  programmePrices,
+} = require("./utilites");
 
 const programmeStructure = () => {
   console.log("\n\t\tGeekdmy Programme ..... \n");
@@ -21,39 +31,48 @@ const getProgrammeWithQty = async () => {
   );
 
   do {
-    const input =  await prompt(
+    const input = await prompt(
       "\n*******Please type which programme do you want and and how many? : "
-    )
-    
-    const [programme,Qty] = input.split(" ");
+    );
 
+    const [programme, Qty] = input.split(" ");
     purchasedProgrammeWithQty[programme] = Qty;
-
-  } while ( await confirm("do you want to add more"));
+  } while (await confirm("do you want to add more"));
 
   return purchasedProgrammeWithQty;
 };
 
-const getTotalCost = (hasProMemberShip, purchasedProgramms) => {
+const getTotalWithDiscountMemberShip = (purchasedProgramms) => {
   let total = 0;
 
-  if (hasProMemberShip) {
-    const [totalProDiscount, addedMemberShipPrices] =
-      addMemberShipDiscount(purchasedProgramms);
-    total = Object.values(addedMemberShipPrices).reduce((sum, price) => {
-      sum += price;
-      return sum;
-    }, 0);
+  const [totalProDiscount, addedMemberShipPrices] =
+    addMemberShipDiscount(purchasedProgramms);
 
-    total += 200;
-    return [totalProDiscount, total];
-  }
+  total = Object.values(addedMemberShipPrices).reduce((sum, price) => {
+    sum += price;
+    return sum;
+  }, 0);
+
+  total += 200;
+  return [totalProDiscount, total];
+};
+
+const getTotalWithoutMemberShipDiscount = (purchasedProgramms) => {
+  let total = 0;
 
   for (const key in purchasedProgramms) {
     total = total + Number(purchasedProgramms[key]) * programmePrices[key];
   }
 
   return [0.0, total];
+}
+
+const getSub_TotalWithTotalDiscount = (hasProMemberShip, purchasedProgramms) => {
+  if (hasProMemberShip) {
+     return getTotalWithDiscountMemberShip(purchasedProgramms);
+  }
+  
+  return getTotalWithoutMemberShipDiscount(purchasedProgramms);
 };
 
 const getLowestCostProgram = (purchasedProgramms) => {
@@ -79,14 +98,13 @@ const addEnrollmentFee = (cost) => {
   return cost + 500;
 };
 
-
 const startGeekdmy = async () => {
   programmeStructure();
-  const purchasedProgramms  = await getProgrammeWithQty();
+  const purchasedProgramms = await getProgrammeWithQty();
   const hasProMemberShip = await doApplyProMemberShip();
   const proMemberShipFee = hasProMemberShip ? 200 : 0.0;
   const coupons = await getCoupon();
-  const [totalProDiscount, sub_total] = getTotalCost(
+  const [totalProDiscount, sub_total] = getSub_TotalWithTotalDiscount(
     hasProMemberShip,
     purchasedProgramms
   );
@@ -101,6 +119,7 @@ const startGeekdmy = async () => {
 
   const enrollementFee = discountAddedfee < 6666 ? 500 : 0;
   const total = discountAddedfee + enrollementFee;
+
   printBill(
     sub_total,
     coupon_discount,
@@ -111,6 +130,12 @@ const startGeekdmy = async () => {
   );
 };
 
-// startGeekdmy();
+startGeekdmy();
 
-module.exports = {getTotalCost,addEnrollmentFee,getTotalNumberOfPrograms,getLowestCostProgram,getProgrammeWithQty};
+module.exports = {
+  getSub_TotalWithTotalDiscount,
+  addEnrollmentFee,
+  getTotalNumberOfPrograms,
+  getLowestCostProgram,
+  getProgrammeWithQty,
+};

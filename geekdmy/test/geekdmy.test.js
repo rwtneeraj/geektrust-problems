@@ -1,17 +1,17 @@
 const {
-  getTotalCost,
+  getSub_TotalWithTotalDiscount,
   getLowestCostProgram,
   getTotalNumberOfPrograms,
   addEnrollmentFee,
 } = require("../src/geekdmy");
 
-describe("getTotalCost testing ....", () => {
+describe("getSub_TotalWithTotalDiscount testing ....", () => {
   test("should return array of two values , if membership is true", () => {
-    const actual = getTotalCost(true, { diploma: 2, certificate: 2 });
+    const actual = getSub_TotalWithTotalDiscount(true, { diploma: 2, certificate: 2 });
     expect(actual).toStrictEqual([170, 11030]);
   });
   test("should return array of two values , if membership is false", () => {
-    const actual = getTotalCost(false, { diploma: 1, certificate: 2 });
+    const actual = getSub_TotalWithTotalDiscount(false, { diploma: 1, certificate: 2 });
     expect(actual).toStrictEqual([0, 8500]);
   });
 });
