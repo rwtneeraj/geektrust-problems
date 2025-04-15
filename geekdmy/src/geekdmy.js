@@ -1,7 +1,7 @@
 const {addMemberShipDiscount,doApplyProMemberShip} = require('./MemberShipSegment');
 const {getCoupon,addCouponDiscount} = require('./couponSegment');
 const {printBill} = require('./printBill');
-const {prompt, DEGREE_COST,DIPLOMA_COST,CERTIFICATION_COST,confirm} = require('./utilites');
+const {prompt, DEGREE_COST,DIPLOMA_COST,CERTIFICATION_COST,confirm,programmePrices} = require('./utilites');
 
 const programmeStructure = () => {
   console.log("\n\t\tGeekdmy Programme ..... \n");
@@ -111,4 +111,6 @@ const startGeekdmy = async () => {
   );
 };
 
-startGeekdmy();
+// startGeekdmy();
+
+module.exports = {getTotalCost,addEnrollmentFee,getTotalNumberOfPrograms,getLowestCostProgram,getProgrammeWithQty};

@@ -1,5 +1,4 @@
 const readline = require('readline');
-// const prompt = require('prompt-sync')();
 
 const CERTIFICATION_COST = 3000;
 const DEGREE_COST = 5000;
